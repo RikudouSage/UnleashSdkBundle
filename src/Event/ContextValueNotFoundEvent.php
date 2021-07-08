@@ -6,8 +6,18 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 final class ContextValueNotFoundEvent extends Event
 {
-    public function __construct(private string $contextName, private ?string $value = null)
+    /**
+     * @var string
+     */
+    private $contextName;
+    /**
+     * @var string|null
+     */
+    private $value;
+    public function __construct(string $contextName, ?string $value = null)
     {
+        $this->contextName = $contextName;
+        $this->value = $value;
     }
 
     public function getContextName(): string
@@ -20,7 +30,10 @@ final class ContextValueNotFoundEvent extends Event
         return $this->value;
     }
 
-    public function setValue(?string $value): self
+    /**
+     * @return $this
+     */
+    public function setValue(?string $value)
     {
         $this->value = $value;
 
