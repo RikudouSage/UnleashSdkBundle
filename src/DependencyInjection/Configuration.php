@@ -13,11 +13,13 @@ use Twig\Extension\ExtensionInterface;
 
 final class Configuration implements ConfigurationInterface
 {
+    private array $defaultStrategyNames;
     /**
      * @param array<string> $defaultStrategyNames
      */
-    public function __construct(private array $defaultStrategyNames)
+    public function __construct(array $defaultStrategyNames)
     {
+        $this->defaultStrategyNames = $defaultStrategyNames;
     }
 
     public function getConfigTreeBuilder(): TreeBuilder
